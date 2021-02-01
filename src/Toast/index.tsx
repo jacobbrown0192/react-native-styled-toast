@@ -38,6 +38,7 @@ export type ToastConfig = {
   message: string
   onPress?: () => void
   messageProps: TextProps
+  messageBoxProps: BoxProps
   subMessageProps: TextProps
   shouldVibrate?: boolean
   subMessage?: string
@@ -76,6 +77,7 @@ const DEFAULT_PROPS: ToastConfig = {
   closeIconColor: 'text',
   message: 'Toast message!',
   messageProps: {},
+  messageBoxProps: {},
   subMessageProps: {},
   hideIcon: false,
   toastStyles: {
@@ -109,6 +111,7 @@ export const Toast: React.FC<ToastConfig & ToastInternalConfig> = ({
   intent,
   message,
   messageProps,
+  messageBoxProps,
   onClose,
   onPress,
   position,
@@ -186,7 +189,7 @@ export const Toast: React.FC<ToastConfig & ToastInternalConfig> = ({
         </IconCont>
       )}
       <Box alignItems="flex-start" flex={1} pl={hideIcon ? 4 : 0} pr={!!subMessage ? 2 : 0} py={2}>
-        <Box flexDirection="row" flexWrap="wrap" flex={1}>
+        <Box flexDirection="row" flexWrap="wrap" flex={1} {...messageBoxProps}>
           <Heading color={color} {...messageProps}>
             {message}
           </Heading>
